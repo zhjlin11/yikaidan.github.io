@@ -1,0 +1,22 @@
+<view class="customer-list">
+  <block wx:for="{{customers}}" wx:key="id">
+    <view class="customer-item">
+      <view>
+        <view>名称：{{item.name}}</view>
+        <view>邮箱：{{item.email}}</view>
+      </view>
+      <view class="actions">
+        <button size="mini" data-id="{{item.id}}" bindtap="startEdit">编辑</button>
+        <button size="mini" type="warn" data-id="{{item.id}}" bindtap="deleteCustomer">删除</button>
+      </view>
+      <view wx:if="{{editId === item.id}}" class="edit-form">
+        <input type="text" value="{{form.name}}" bindinput="onName" placeholder="名称" />
+        <input type="text" value="{{form.email}}" bindinput="onEmail" placeholder="邮箱" />
+        <view class="edit-actions">
+          <button size="mini" bindtap="submitEdit" type="primary">保存</button>
+          <button size="mini" bindtap="cancelEdit">取消</button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
