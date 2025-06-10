@@ -1,3 +1,5 @@
+const { baseUrl } = require('../../utils/config')
+
 Page({
   data: {
     orders: []
@@ -9,7 +11,7 @@ Page({
 
   fetchOrders() {
     wx.request({
-      url: 'http://localhost:3000/orders',
+      url: `${baseUrl}/orders`,
       success: res => {
         this.setData({ orders: res.data })
       }

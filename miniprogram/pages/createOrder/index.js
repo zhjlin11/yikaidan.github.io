@@ -1,3 +1,5 @@
+const { baseUrl } = require('../../utils/config')
+
 Page({
   data: {
     products: [],
@@ -9,13 +11,13 @@ Page({
 
   onLoad() {
     wx.request({
-      url: 'http://localhost:3000/products',
+      url: `${baseUrl}/products`,
       success: res => {
         this.setData({ products: res.data })
       }
     })
     wx.request({
-      url: 'http://localhost:3000/customers',
+      url: `${baseUrl}/customers`,
       success: res => {
         this.setData({ customers: res.data })
       }
@@ -42,7 +44,7 @@ Page({
       quantity
     }
     wx.request({
-      url: 'http://localhost:3000/orders',
+      url: `${baseUrl}/orders`,
       method: 'POST',
       data,
       success: res => {
