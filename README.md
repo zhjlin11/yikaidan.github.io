@@ -32,7 +32,4 @@
 
 ## 运行
 
-1. 按照 `docs/setup.md` 创建数据库并设置 `MYSQL_URI` 环境变量。
-2. 进入 `server` 目录执行 `npm install && npm start` 启动接口服务。
-3. 根据需要修改 `miniprogram/utils/config.js` 中的 `baseUrl`，指向后端接口地址。
-4. 使用微信开发者工具打开 `miniprogram` 目录即可预览小程序。
+
