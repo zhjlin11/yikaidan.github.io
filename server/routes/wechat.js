@@ -114,16 +114,22 @@ router.post(
     delete data.sign;
     const expected = buildSign(data);
     if (sign !== expected) {
-      return res.send(buildXML({ return_code: 'FAIL', return_msg: 'SIGNERROR' }));
+      const xmlRes = buildXML({ return_code: 'FAIL', return_msg: 'SIGNERROR' });
+      if (req.accepts('json')) return res.status(400).json({ success: false });
+      return res.send(xmlRes);
     }
 
     const order = await Order.findByPk(data.out_trade_no);
     if (!order) {
-      return res.send(buildXML({ return_code: 'FAIL', return_msg: 'ORDERNOTFOUND' }));
+      const xmlRes = buildXML({ return_code: 'FAIL', return_msg: 'ORDERNOTFOUND' });
+      if (req.accepts('json')) return res.status(404).json({ success: false });
+      return res.send(xmlRes);
     }
 
     await order.update({ payStatus: 'paid', status: 'paid' });
-    res.send(buildXML({ return_code: 'SUCCESS', return_msg: 'OK' }));
+    const xmlRes = buildXML({ return_code: 'SUCCESS', return_msg: 'OK' });
+    if (req.accepts('json')) return res.json({ success: true });
+    res.send(xmlRes);
   })
 );
 

@@ -51,6 +51,37 @@ Page({
     })
   },
 
+  payOrder() {
+    const { order } = this.data
+    if (!order) return
+    wx.request({
+      url: `${baseUrl}/wechat/pay/preorder`,
+      method: 'POST',
+      data: { orderId: order.id },
+      success: res => {
+        const params = res.data || {}
+        wx.requestPayment({
+          timeStamp: params.timeStamp,
+          nonceStr: params.nonceStr,
+          package: params.package,
+          signType: params.signType,
+          paySign: params.paySign,
+          success: () => {
+            wx.showToast({ title: '支付成功' })
+            this.fetchOrder(order.id)
+          },
+          fail: () => {
+            wx.showToast({ icon: 'none', title: '支付失败' })
+            this.fetchOrder(order.id)
+          }
+        })
+      },
+      fail: () => {
+        wx.showToast({ icon: 'none', title: '下单失败' })
+      }
+    })
+  },
+
   onShareAppMessage() {
     const { order } = this.data
     if (!order) return {}

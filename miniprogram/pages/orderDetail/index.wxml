@@ -6,6 +6,7 @@
   <view>状态：{{order.status}}</view>
   <image wx:if="{{order.seal}}" src="{{order.seal}}" mode="widthFix" class="seal" />
   <image wx:if="{{order.payCode}}" src="{{order.payCode}}" mode="widthFix" class="qrcode" />
+  <button wx:if="{{order.payStatus !== 'paid'}}" type="primary" bindtap="payOrder">立即支付</button>
   <button open-type="share" type="primary">分享订单</button>
   <button type="default" bindtap="editOrder">编辑订单</button>
   <button type="warn" bindtap="deleteOrder">删除订单</button>
