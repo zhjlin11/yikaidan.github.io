@@ -1,0 +1,10 @@
+<view wx:if="{{order}}" class="order-detail">
+  <view>订单编号：{{order.id}}</view>
+  <view>客户：{{order.Customer.name}}</view>
+  <view>商品：{{order.Product.name}}</view>
+  <view>数量：{{order.quantity}}</view>
+  <view>状态：{{order.status}}</view>
+  <image wx:if="{{order.seal}}" src="{{order.seal}}" mode="widthFix" class="seal" />
+  <image wx:if="{{order.payCode}}" src="{{order.payCode}}" mode="widthFix" class="qrcode" />
+  <button open-type="share" type="primary">分享订单</button>
+</view>
