@@ -19,7 +19,6 @@
    export WECHAT_MCHID='your_mch_id'
    export WECHAT_KEY='your_sign_key'
    export WECHAT_NOTIFY_URL='https://your.domain/wechat/pay/callback'
-   export JWT_SECRET='your_jwt_secret'
    ```
 
 4. **Start the server**

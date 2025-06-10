@@ -5,7 +5,6 @@ jest.mock("../utils/qrcode", () => jest.fn(async () => "QRCODE"));
 
 process.env.MYSQL_URI = 'sqlite::memory:';
 const app = require('../app');
-const { sequelize, Customer, Product, Order, User } = require('../models');
 
 beforeAll(async () => {
   await sequelize.sync();
