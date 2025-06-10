@@ -1,3 +1,0 @@
-# yikaidan.github.io
-
-yikaidan
