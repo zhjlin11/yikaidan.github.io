@@ -11,3 +11,7 @@
   border-bottom: 1px solid #eee;
   padding-bottom: 8rpx;
 }
+
+.actions {
+  margin-top: 8rpx;
+}

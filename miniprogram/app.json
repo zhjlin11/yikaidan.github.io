@@ -2,6 +2,7 @@
   "pages": [
     "pages/createOrder/index",
     "pages/orderList/index",
+    "pages/editOrder/index",
     "pages/orderDetail/index"
   ],
   "window": {

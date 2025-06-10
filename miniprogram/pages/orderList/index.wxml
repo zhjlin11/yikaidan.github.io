@@ -1,9 +1,15 @@
 <view class="order-list">
   <block wx:for="{{orders}}" wx:key="id">
-    <view class="order-item" data-id="{{item.id}}" bindtap="goDetail">
-      <view>订单编号：{{item.id}}</view>
-      <view>数量：{{item.quantity}}</view>
-      <view>状态：{{item.status}}</view>
+    <view class="order-item">
+      <view data-id="{{item.id}}" bindtap="goDetail">
+        <view>订单编号：{{item.id}}</view>
+        <view>数量：{{item.quantity}}</view>
+        <view>状态：{{item.status}}</view>
+      </view>
+      <view class="actions">
+        <button size="mini" data-id="{{item.id}}" bindtap="editOrder">编辑</button>
+        <button size="mini" type="warn" data-id="{{item.id}}" bindtap="deleteOrder">删除</button>
+      </view>
     </view>
   </block>
 </view>
