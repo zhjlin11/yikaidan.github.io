@@ -1,0 +1,21 @@
+.product-list {
+  padding: 16rpx;
+}
+
+.product-item {
+  margin-bottom: 16rpx;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8rpx;
+}
+
+.actions {
+  margin-top: 8rpx;
+}
+
+.edit-form {
+  margin-top: 8rpx;
+}
+
+.edit-actions {
+  margin-top: 8rpx;
+}

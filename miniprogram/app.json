@@ -3,6 +3,8 @@
     "pages/login/index",
     "pages/createOrder/index",
     "pages/orderList/index",
+    "pages/customerList/index",
+    "pages/productList/index",
     "pages/editOrder/index",
     "pages/orderDetail/index"
   ],

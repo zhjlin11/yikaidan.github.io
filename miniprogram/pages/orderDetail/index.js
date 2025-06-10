@@ -40,6 +40,9 @@ Page({
           wx.request({
             url: `${baseUrl}/orders/${order.id}`,
             method: 'DELETE',
+            header: {
+              Authorization: `Bearer ${getApp().globalData.token}`
+            },
             success: () => {
               wx.redirectTo({
                 url: '/pages/orderList/index'

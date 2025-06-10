@@ -38,6 +38,8 @@ Page({
 
   submitOrder() {
     const { products, productIndex, customers, customerIndex, quantity } = this.data
+    const app = getApp()
+    const token = app.globalData.token
     const data = {
       ProductId: products[productIndex] && products[productIndex].id,
       CustomerId: customers[customerIndex] && customers[customerIndex].id,
@@ -46,6 +48,9 @@ Page({
     wx.request({
       url: `${baseUrl}/orders`,
       method: 'POST',
+      header: {
+        Authorization: `Bearer ${token}`
+      },
       data,
       success: res => {
         const order = res.data

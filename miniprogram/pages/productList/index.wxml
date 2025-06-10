@@ -1,0 +1,22 @@
+<view class="product-list">
+  <block wx:for="{{products}}" wx:key="id">
+    <view class="product-item">
+      <view>
+        <view>名称：{{item.name}}</view>
+        <view>价格：{{item.price}}</view>
+      </view>
+      <view class="actions">
+        <button size="mini" data-id="{{item.id}}" bindtap="startEdit">编辑</button>
+        <button size="mini" type="warn" data-id="{{item.id}}" bindtap="deleteProduct">删除</button>
+      </view>
+      <view wx:if="{{editId === item.id}}" class="edit-form">
+        <input type="text" value="{{form.name}}" bindinput="onName" placeholder="名称" />
+        <input type="number" value="{{form.price}}" bindinput="onPrice" placeholder="价格" />
+        <view class="edit-actions">
+          <button size="mini" bindtap="submitEdit" type="primary">保存</button>
+          <button size="mini" bindtap="cancelEdit">取消</button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
