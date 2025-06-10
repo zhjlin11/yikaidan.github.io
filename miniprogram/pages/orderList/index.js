@@ -42,6 +42,9 @@ Page({
           wx.request({
             url: `${baseUrl}/orders/${id}`,
             method: 'DELETE',
+            header: {
+              Authorization: `Bearer ${getApp().globalData.token}`
+            },
             success: () => {
               this.fetchOrders()
             }

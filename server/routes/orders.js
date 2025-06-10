@@ -4,6 +4,7 @@ const { Order, Customer, Product } = require('../models');
 const generateSeal = require('../utils/sealGenerator');
 const generatePayCode = require('../utils/qrcode');
 const asyncHandler = require('../utils/asyncHandler');
+const auth = require('../authMiddleware');
 
 // List all orders with associated customer and product
 router.get(
@@ -27,6 +28,7 @@ router.get(
 // Create a new order and attach seal/QR code
 router.post(
   '/',
+  auth,
   asyncHandler(async (req, res) => {
     const { CustomerId, ProductId } = req.body;
     const customer = await Customer.findByPk(CustomerId);
@@ -46,6 +48,7 @@ router.post(
 // Update an order
 router.put(
   '/:id',
+  auth,
   asyncHandler(async (req, res) => {
     const order = await Order.findByPk(req.params.id);
     if (!order) return res.status(404).end();
@@ -71,6 +74,7 @@ router.put(
 // Delete an order
 router.delete(
   '/:id',
+  auth,
   asyncHandler(async (req, res) => {
     const order = await Order.findByPk(req.params.id);
     if (!order) return res.status(404).end();
