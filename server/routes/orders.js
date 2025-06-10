@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Order, Customer, Product } = require('../models');
+const generateSeal = require('../utils/sealGenerator');
+const generatePayCode = require('../utils/qrcode');
 
 router.get('/', async (req, res) => {
   const orders = await Order.findAll({ include: [Customer, Product] });
@@ -15,6 +17,10 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const order = await Order.create(req.body);
+  const seal = generateSeal(`Order ${order.id}`);
+  order.sealImage = seal;
+  order.payCode = await generatePayCode(`pay://order/${order.id}`);
+  await order.save();
   res.status(201).json(order);
 });
 
