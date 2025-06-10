@@ -1,5 +1,11 @@
 App({
+  globalData: {
+    token: ''
+  },
   onLaunch() {
-    // App initialization
+    const token = wx.getStorageSync('token')
+    if (token) {
+      this.globalData.token = token
+    }
   }
 })
