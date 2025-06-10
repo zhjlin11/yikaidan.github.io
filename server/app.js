@@ -6,6 +6,7 @@ const customerRoutes = require('./routes/customers');
 const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const wechatRoutes = require('./routes/wechat');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,6 +16,7 @@ app.use('/customers', customerRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/wechat', wechatRoutes);
+app.use('/auth', authRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);

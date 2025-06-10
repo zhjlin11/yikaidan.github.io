@@ -34,7 +34,7 @@ Page({
       url: `${baseUrl}/products`,
       success: res => {
         const products = res.data
-        const productId = order.Product ? order.Product.id : order.productId
+        const productId = order.Product ? order.Product.id : order.ProductId
         const productIndex = products.findIndex(p => p.id === productId)
         this.setData({
           products,
@@ -46,7 +46,7 @@ Page({
       url: `${baseUrl}/customers`,
       success: res => {
         const customers = res.data
-        const customerId = order.Customer ? order.Customer.id : order.customerId
+        const customerId = order.Customer ? order.Customer.id : order.CustomerId
         const customerIndex = customers.findIndex(c => c.id === customerId)
         this.setData({
           customers,
@@ -71,8 +71,8 @@ Page({
   submitOrder() {
     const { orderId, products, productIndex, customers, customerIndex, quantity } = this.data
     const data = {
-      productId: products[productIndex] && products[productIndex].id,
-      customerId: customers[customerIndex] && customers[customerIndex].id,
+      ProductId: products[productIndex] && products[productIndex].id,
+      CustomerId: customers[customerIndex] && customers[customerIndex].id,
       quantity
     }
     wx.request({

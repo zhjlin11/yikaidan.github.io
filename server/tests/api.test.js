@@ -5,7 +5,7 @@ jest.mock("../utils/qrcode", () => jest.fn(async () => "QRCODE"));
 
 process.env.MYSQL_URI = 'sqlite::memory:';
 const app = require('../app');
-const { sequelize, Customer, Product } = require('../models');
+const { sequelize, Customer, Product, Order, User } = require('../models');
 
 beforeAll(async () => {
   await sequelize.sync();
@@ -17,6 +17,21 @@ beforeEach(async () => {
 
 afterAll(async () => {
   await sequelize.close();
+});
+
+describe('Auth', () => {
+  test('register and login', async () => {
+    let res = await request(app)
+      .post('/auth/register')
+      .send({ username: 'alice', password: 'pass123' });
+    expect(res.status).toBe(201);
+
+    res = await request(app)
+      .post('/auth/login')
+      .send({ username: 'alice', password: 'pass123' });
+    expect(res.status).toBe(200);
+    expect(res.body.token).toBeDefined();
+  });
 });
 
 describe('Customer CRUD', () => {
@@ -40,6 +55,7 @@ describe('Customer CRUD', () => {
     res = await request(app).delete(`/customers/${id}`);
     expect(res.status).toBe(204);
   });
+
 });
 
 describe('Product CRUD', () => {
@@ -100,5 +116,39 @@ describe('Order CRUD', () => {
 
     res = await request(app).delete(`/orders/${id}`);
     expect(res.status).toBe(204);
+  });
+
+  test('reject invalid ids', async () => {
+    const customer = await Customer.create({
+      name: 'Bob',
+      email: 'bob@example.com',
+    });
+    const product = await Product.create({ name: 'Widget', price: 2 });
+
+    let res = await request(app)
+      .post('/orders')
+      .send({ CustomerId: 9999, ProductId: product.id, quantity: 1 });
+    expect(res.status).toBe(400);
+
+    res = await request(app)
+      .post('/orders')
+      .send({ CustomerId: customer.id, ProductId: 9999, quantity: 1 });
+    expect(res.status).toBe(400);
+
+    const order = await Order.create({
+      CustomerId: customer.id,
+      ProductId: product.id,
+      quantity: 1,
+    });
+
+    res = await request(app)
+      .put(`/orders/${order.id}`)
+      .send({ CustomerId: 8888 });
+    expect(res.status).toBe(400);
+
+    res = await request(app)
+      .put(`/orders/${order.id}`)
+      .send({ ProductId: 8888 });
+    expect(res.status).toBe(400);
   });
 });

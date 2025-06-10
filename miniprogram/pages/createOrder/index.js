@@ -39,8 +39,8 @@ Page({
   submitOrder() {
     const { products, productIndex, customers, customerIndex, quantity } = this.data
     const data = {
-      productId: products[productIndex] && products[productIndex].id,
-      customerId: customers[customerIndex] && customers[customerIndex].id,
+      ProductId: products[productIndex] && products[productIndex].id,
+      CustomerId: customers[customerIndex] && customers[customerIndex].id,
       quantity
     }
     wx.request({
