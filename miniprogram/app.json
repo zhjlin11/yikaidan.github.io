@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/createOrder/index",
+    "pages/orderList/index",
+    "pages/orderDetail/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "Mini Program"
+  }
+}
