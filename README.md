@@ -19,4 +19,5 @@
 ## 运行
 
 1. 进入 `server` 目录执行 `npm install && npm start` 启动接口服务。
-2. 使用微信开发者工具打开 `miniprogram` 目录即可预览小程序。
+2. 根据需要修改 `miniprogram/utils/config.js` 中的 `baseUrl`，指向后端接口地址。
+3. 使用微信开发者工具打开 `miniprogram` 目录即可预览小程序。

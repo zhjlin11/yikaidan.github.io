@@ -17,6 +17,11 @@ app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/wechat', wechatRoutes);
 
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).json({ error: 'Internal server error' })
+})
+
 const port = process.env.PORT || 3000;
 
 async function start() {
