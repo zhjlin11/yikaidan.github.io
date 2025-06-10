@@ -1,1 +1,20 @@
-<view>Order List Page</view>
+<view class="filters">
+  <input placeholder="Customer ID" bindinput="onCustomerInput" value="{{customerId}}" />
+  <view class="date-picker">
+    <picker mode="date" bindchange="onStartDateChange">
+      <view>{{startDate || 'Start Date'}}</view>
+    </picker>
+    <picker mode="date" bindchange="onEndDateChange">
+      <view>{{endDate || 'End Date'}}</view>
+    </picker>
+  </view>
+  <button bindtap="fetchOrders">Search</button>
+</view>
+
+<view class="order-list">
+  <block wx:for="{{orders}}" wx:key="id">
+    <view class="order-item">
+      <text>ID: {{item.id}} Customer: {{item.Customer.name}} Status: {{item.status}}</text>
+    </view>
+  </block>
+</view>

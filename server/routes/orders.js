@@ -1,9 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const { Order, Customer, Product } = require('../models');
+const { Op } = require('sequelize');
 
 router.get('/', async (req, res) => {
-  const orders = await Order.findAll({ include: [Customer, Product] });
+  const { customerId, productId, status, startDate, endDate } = req.query;
+  const where = {};
+  if (customerId) where.CustomerId = customerId;
+  if (productId) where.ProductId = productId;
+  if (status) where.status = status;
+  if (startDate || endDate) {
+    where.createdAt = {};
+    if (startDate) where.createdAt[Op.gte] = new Date(startDate);
+    if (endDate) where.createdAt[Op.lte] = new Date(endDate);
+  }
+
+  const orders = await Order.findAll({
+    where,
+    include: [Customer, Product]
+  });
   res.json(orders);
 });
 

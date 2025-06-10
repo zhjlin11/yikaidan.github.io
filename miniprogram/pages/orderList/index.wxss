@@ -1,1 +1,13 @@
-/* Order List styles */
+.filters {
+  padding: 16rpx;
+}
+
+.order-list {
+  padding: 16rpx;
+}
+
+.order-item {
+  margin-bottom: 16rpx;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8rpx;
+}
