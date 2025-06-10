@@ -1,1 +1,9 @@
-<view>Order List Page</view>
+<view class="order-list">
+  <block wx:for="{{orders}}" wx:key="id">
+    <view class="order-item" data-id="{{item.id}}" bindtap="goDetail">
+      <view>订单编号：{{item.id}}</view>
+      <view>数量：{{item.quantity}}</view>
+      <view>状态：{{item.status}}</view>
+    </view>
+  </block>
+</view>
