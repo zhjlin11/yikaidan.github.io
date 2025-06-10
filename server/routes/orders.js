@@ -28,6 +28,13 @@ router.get(
 router.post(
   '/',
   asyncHandler(async (req, res) => {
+    const { CustomerId, ProductId } = req.body;
+    const customer = await Customer.findByPk(CustomerId);
+    const product = await Product.findByPk(ProductId);
+    if (!customer || !product) {
+      return res.status(400).json({ error: 'Invalid CustomerId or ProductId' });
+    }
+
     const order = await Order.create(req.body);
     const seal = generateSeal(`Order ${order.id}`);
     const payCode = await generatePayCode(`PAY:${order.id}`);
@@ -42,6 +49,20 @@ router.put(
   asyncHandler(async (req, res) => {
     const order = await Order.findByPk(req.params.id);
     if (!order) return res.status(404).end();
+    const { CustomerId, ProductId } = req.body;
+    if (CustomerId) {
+      const customer = await Customer.findByPk(CustomerId);
+      if (!customer) {
+        return res.status(400).json({ error: 'Invalid CustomerId' });
+      }
+    }
+    if (ProductId) {
+      const product = await Product.findByPk(ProductId);
+      if (!product) {
+        return res.status(400).json({ error: 'Invalid ProductId' });
+      }
+    }
+
     await order.update(req.body);
     res.json(order);
   })
