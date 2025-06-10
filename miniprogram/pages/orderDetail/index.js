@@ -21,6 +21,36 @@ Page({
     })
   },
 
+  editOrder() {
+    const { order } = this.data
+    if (!order) return
+    wx.navigateTo({
+      url: `/pages/editOrder/index?id=${order.id}`
+    })
+  },
+
+  deleteOrder() {
+    const { order } = this.data
+    if (!order) return
+    wx.showModal({
+      title: '删除确认',
+      content: '确定要删除该订单吗？',
+      success: res => {
+        if (res.confirm) {
+          wx.request({
+            url: `${baseUrl}/orders/${order.id}`,
+            method: 'DELETE',
+            success: () => {
+              wx.redirectTo({
+                url: '/pages/orderList/index'
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
   onShareAppMessage() {
     const { order } = this.data
     if (!order) return {}

@@ -1,0 +1,9 @@
+/* Create Order styles */
+.field {
+  margin: 16rpx 0;
+}
+
+.picker {
+  padding: 12rpx;
+  border: 1px solid #eee;
+}

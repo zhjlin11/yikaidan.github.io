@@ -1,0 +1,16 @@
+<form bindsubmit="submitOrder">
+  <view class="field">
+    <picker mode="selector" range="{{products}}" range-key="name" value="{{productIndex}}" bindchange="onProductChange">
+      <view class="picker">{{products.length ? products[productIndex].name : '选择商品'}}</view>
+    </picker>
+  </view>
+  <view class="field">
+    <picker mode="selector" range="{{customers}}" range-key="name" value="{{customerIndex}}" bindchange="onCustomerChange">
+      <view class="picker">{{customers.length ? customers[customerIndex].name : '选择客户'}}</view>
+    </picker>
+  </view>
+  <view class="field">
+    <input type="number" value="{{quantity}}" bindinput="onQuantityChange" />
+  </view>
+  <button formType="submit" type="primary">保存订单</button>
+</form>
