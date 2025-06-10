@@ -1,4 +1,0 @@
-<view>Order Detail Page</view>
-<image mode="widthFix" src="{{order.seal}}"></image>
-<image mode="widthFix" src="{{order.payCode}}"></image>
-<button open-type="share">分享</button>
