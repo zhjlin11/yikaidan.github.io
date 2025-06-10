@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const { sequelize } = require('./models');
 const customerRoutes = require('./routes/customers');
@@ -9,6 +10,7 @@ const wechatRoutes = require('./routes/wechat');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/customers', customerRoutes);
 app.use('/products', productRoutes);
