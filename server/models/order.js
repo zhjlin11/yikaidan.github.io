@@ -9,6 +9,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'pending'
+    },
+    prepayId: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    payStatus: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'unpaid'
     }
   });
   return Order;
