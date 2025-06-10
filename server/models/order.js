@@ -10,11 +10,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'pending'
     },
-    sealImage: {
-      type: DataTypes.TEXT
-    },
-    payCode: {
-      type: DataTypes.TEXT
     }
   });
   return Order;
