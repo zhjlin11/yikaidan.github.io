@@ -1,7 +1,0 @@
-<view>
-  <view wx:for="{{orders}}" wx:key="id" class="order-item">
-    <text>客户: {{item.Customer ? item.Customer.name : ''}}</text>
-    <text> 商品: {{item.Product ? item.Product.name : ''}}</text>
-    <text> 数量: {{item.quantity}}</text>
-  </view>
-</view>
