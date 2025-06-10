@@ -1,2 +1,0 @@
-<view>Create Order Page</view>
-<button bindtap="createAndPay">Create & Pay</button>
